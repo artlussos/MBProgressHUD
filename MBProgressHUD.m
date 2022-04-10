@@ -190,7 +190,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     [self hideAnimated:[timer.userInfo boolValue]];
 }
 
-#pragma mark - View Hierrarchy
+#pragma mark - View Hierarchy
 
 - (void)didMoveToSuperview {
     [self updateForCurrentOrientationAnimated:NO];
@@ -378,8 +378,6 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
                 activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
                 activityIndicator.color = [UIColor whiteColor];
 #if !TARGET_OS_MACCATALYST
-            } else {
-               activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
             }
 #endif
             [activityIndicator startAnimating];
@@ -743,14 +741,14 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 
     [nc addObserver:self selector:@selector(statusBarOrientationDidChange:)
-               name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+               name:UIDeviceOrientationDidChangeNotification object:nil];
 #endif
 }
 
 - (void)unregisterFromNotifications {
 #if !TARGET_OS_TV && !TARGET_OS_MACCATALYST
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    [nc removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 #endif
 }
 
